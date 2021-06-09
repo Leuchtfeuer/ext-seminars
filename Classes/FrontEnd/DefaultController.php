@@ -368,6 +368,8 @@ class Tx_Seminars_FrontEnd_DefaultController extends \Tx_Oelib_TemplateHelper im
         // Here, we don't use the direct return value from
         // $this->checkConfiguration as this would ignore any previous error
         // messages.
+        // This fixes a bug in oelib extension :(
+        $GLOBALS['TypoScriptFE'] = $GLOBALS['TSFE'];
         $this->checkConfiguration();
         $result .= $this->getWrappedConfigCheckMessage();
 
