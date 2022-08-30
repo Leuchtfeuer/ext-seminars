@@ -1143,11 +1143,13 @@ class Tx_Seminars_FrontEnd_RegistrationForm extends \Tx_Seminars_FrontEnd_Editor
             $captions = [];
 
             foreach ($selectedOptions as $currentSelection) {
-                if (isset($availableOptions[$currentSelection])) {
-                    $captions[] = $availableOptions[$currentSelection]['caption'];
+                foreach ($availableOptions as $availableOption) {
+                    if ((int)$currentSelection === (int)$availableOption['value']) {
+                        $captions[] = $availableOption['caption'];
+                    }
                 }
-                $result = \implode("\r", $captions);
             }
+            $result = \implode("\r", $captions);
         }
 
         return $result;
